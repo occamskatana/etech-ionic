@@ -21,7 +21,7 @@ angular.module('main', [
         views: {
           'tab-list': {
             templateUrl: 'main/templates/list.html',
-            // controller: 'SomeCtrl as ctrl'
+            controller: 'ListController'
           }
         }
       })
@@ -34,11 +34,11 @@ angular.module('main', [
           }
         }
       })
-      .state('main.debug', {
-        url: '/debug',
+      .state('main.calendar', {
+        url: '/calendar',
         views: {
-          'tab-debug': {
-            templateUrl: 'main/templates/debug.html',
+          'tab-calendar': {
+            templateUrl: 'main/templates/calendar.html',
             controller: 'DebugCtrl as ctrl'
           }
         }

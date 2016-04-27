@@ -1,18 +1,42 @@
-<ion-view view-title="List">
-  <ion-content>
+<ion-view view-title="Welcome">
+  <ion-content class="padding">
+  <div class="list card">
+    <div class="item item-avatar">
+      <img src="https://scontent-lax3-1.xx.fbcdn.net/hphotos-xpa1/v/t1.0-9/29384_10151220410414547_1338190958_n.jpg?oh=f88f0e9efba49237c54f65a9be08ba16&oe=57AC06B3">
+      <h2 id="resident-name">John Carter</h2>
+      <p><div id="sober-card" class="sober-card">
+        <div id="sober-time" class="sober-time">
+          <span id="days">00</span><span class="timeRefDays time-ref">D</span>
+          <span id="hours">00</span><span class="timeRefHours time-ref">H</span>
+          <span id="minutes">00</span><span class="timeRefMinutes time-ref">M</span>
+          <span id="seconds">00</span><span class="timeRefSeconds time-ref">S</span>
+          Of Sobriety
+        </div>
+      </div></p>
+    </div>
+  </div>
 
-    <!-- content goes here -->
-    <ion-list>
-      <ion-item
-        class="item-remove-animate item-avatar item-icon-right"
-        type="item-text-wrap"
-        ui-sref="main.listDetail">
-        <img src="main/assets/images/yo@2x.png">
-        <h2>Mr. Yo</h2>
-        <p>Learn more...</p>
-        <i class="icon ion-chevron-right icon-accessory"></i>
-      </ion-item>
-    </ion-list>
+  <div class="list">
+     <a href="#" class="item item-icon-right">
+    <i class="icon ion-ios-checkmark-outline"></i>
+    Attend a Meeting
+  </a>
+
+  <a href="#" class="item item-icon-right">
+    <i class="icon ion-ios-checkmark-outline"></i>
+    Urine Test At CFC Today
+  </a>
+
+  <a href="#" class="item item-icon-right">
+    <i class="icon ion-ios-checkmark-outline"></i>
+    Therapy at 4 PM
+  </a>
+
+  <a href="#" class="item item-icon-right">
+    <i class="icon ion-ios-checkmark-outline"></i>
+    Case Manager Meeting at 3 PM
+  </a>
+  </div>
 
   </ion-content>
 </ion-view>
