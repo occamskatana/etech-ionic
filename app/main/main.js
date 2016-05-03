@@ -3,6 +3,8 @@ angular.module('main', [
   'ionic',
   'ngCordova',
   'ui.router',
+  'ui.rCalendar',
+  'firebase'
   // TODO: load other modules selected during generation
 ])
 .config(function ($stateProvider, $urlRouterProvider) {
