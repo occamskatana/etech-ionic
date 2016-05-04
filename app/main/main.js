@@ -7,7 +7,10 @@ angular.module('main', [
   'firebase'
   // TODO: load other modules selected during generation
 ])
-.config(function ($stateProvider, $urlRouterProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider) {
+
+  $ionicConfigProvider.tabs.position("bottom"); //Places them at the bottom for all OS
+  $ionicConfigProvider.tabs.style("standard"); //Makes them all look the same across all OS
 
   // ROUTING with ui.router
   $urlRouterProvider.otherwise('/main/list');
@@ -41,7 +44,7 @@ angular.module('main', [
         views: {
           'tab-calendar': {
             templateUrl: 'main/templates/calendar.html',
-            controller: 'DebugCtrl as ctrl'
+            controller: 'ScheduleController'
           }
         }
       });
