@@ -7,14 +7,19 @@
 			
     			'use strict';
             $scope.calendar = {};
+            $scope.calendar.eventSource = CalendarItems.items
+
+            $scope.calendar.eventSource.$watch(function(event){
+                $scope.$broadcast('eventSourceChanged',$scope.calendar.eventSource);
+            })
+
             
             $scope.changeMode = function (mode) {
                 $scope.calendar.mode = mode;
             };
 
             $scope.loadEvents = function () {
-               $scope.calendar.eventSource = CalendarItems.items
-               console.log($scope.calendar.eventSource)
+                $scope.calendar.eventSource = CalendarItems.items
             };
 
             $scope.onEventSelected = function (event) {
