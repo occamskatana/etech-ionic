@@ -6,6 +6,8 @@
 		function ScheduleController($scope, $firebaseArray, CalendarItems) {
 			
     			'use strict';
+
+              
             $scope.calendar = {};
             $scope.calendar.eventSource = CalendarItems.items
 

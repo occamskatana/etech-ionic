@@ -10,7 +10,7 @@
     "angular-translate": "~2.10.0",
     "angular-translate-loader-static-files": "~2.10.0",
     "localforage": "~1.4.0",
-    "ionic-calendar": "git://github.com/occamskatana/ui-calendar.git#master",
+    "ionic-calendar": "0.2.5",
     "angularfire": "^1.2.0"
   },
   "devDependencies": {
