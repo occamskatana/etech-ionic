@@ -1,0 +1,21 @@
+<ion-view view-title="Welcome - Please Login Here">
+  <!-- do you want padding -->
+  <ion-content>
+
+  <div class="list">
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Email</span>
+    <input type="text" ng-model="credentials.email" placeholder="Email">
+  </label>
+  <label class="item item-input item-floating-label">
+    <span class="input-label">Password</span>
+    <input type="text" ng-model="credentials.password" placeholder="Password">
+  </label>
+
+  <button ng-click="login()" class="button button-block button-positive">Login</button>
+</div>
+
+ 
+
+  </ion-content>
+</ion-view>
