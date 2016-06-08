@@ -3,11 +3,17 @@
 		.module('main')
 		.controller('ListController', ListController)
 
-		function ListController($scope){
+		function ListController($scope, ResidentService, $http){
 
+
+			$http.get('http://localhost:3000/api/v1/residents/' + window.localStorage.id).then(function(response){
+				console.log(response)
+			})
+
+			$scope.name = window.localStorage.name
 
 			$scope.$on('$ionicView.loaded', function(){
-				upTime('1/1/2013')
+				upTime(window.localStorage.soberDate)
 			})
 			
 

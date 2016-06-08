@@ -22,7 +22,7 @@
 			$scope.$on('devise:new-session', function(event, currentUser){
 				window.localStorage.clear();
 				window.localStorage.id = currentUser.id;
-				window.localStorage.email = currentUser.email;
+				window.localStorage.soberDate = currentUser.sober_date
 				window.localStorage.name = currentUser.first_name + ' ' + currentUser.last_name
 			})
 
