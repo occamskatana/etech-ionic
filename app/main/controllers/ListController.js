@@ -3,12 +3,21 @@
 		.module('main')
 		.controller('ListController', ListController)
 
-		function ListController($scope, ResidentService, $http){
+		function ListController($scope, LocationFactory, $http, $interval){
 
 
 			$http.get('http://localhost:3000/api/v1/residents/' + window.localStorage.id).then(function(response){
 				console.log(response)
 			})
+
+
+			function callatInterval(){
+				LocationFactory.getLocation()
+			}
+
+			$interval(callatInterval, 1200000)
+
+
 
 			$scope.name = window.localStorage.name
 
