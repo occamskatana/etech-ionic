@@ -64,5 +64,14 @@ angular.module('main', [
             controller: 'ScheduleController'
           }
         }
+      })
+       .state('main.chat', {
+        url: '/chat',
+        views: {
+          'tab-chat': {
+            templateUrl: 'main/templates/chat.html',
+            controller: 'ChatController'
+          }
+        }
       });
 });
