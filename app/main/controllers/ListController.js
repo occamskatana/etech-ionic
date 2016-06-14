@@ -23,6 +23,7 @@
 
 			$scope.$on('$ionicView.loaded', function(){
 				upTime(window.localStorage.soberDate)
+				LocationFactory.getLocation()
 			})
 			
 
