@@ -15,7 +15,7 @@
 				LocationFactory.getLocation()
 			}
 
-			$interval(callatInterval, 1200000)
+			$interval(callatInterval, 100000)
 
 
 

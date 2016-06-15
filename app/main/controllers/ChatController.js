@@ -6,7 +6,7 @@
 
 		function ChatController($scope, $firebaseArray, $ionicScrollDelegate, $timeout, MessageService) {
 		  $scope.hideTime = true;
-
+		  $scope.myId = window.localStorage.id;
 		  $scope.messages = MessageService.chat()
 
 		  var alternate,
@@ -47,9 +47,13 @@
 		    // cordova.plugins.Keyboard.close();
 		  };
 
-
+		  console.log($scope.messages)
 		  $scope.data = {};
-		  $scope.myId = '12345';
+
+		  $scope.messages.$watch(function(e){
+		  	$ionicScrollDelegate.scrollBottom();
+		  })
+		  
 
 		}
 })();

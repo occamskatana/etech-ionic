@@ -28,7 +28,7 @@ $stable:                          #f8f8f8 !default;
     -webkit-transition: all 250ms ease-in-out !important;
     transition: all 250ms ease-in-out !important;
     overflow: hidden !important;
-    text-align: left !important;
+    text-align: right !important;
     -webkit-transform: translate3d(0, 0, 0) !important;
     -moz-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
@@ -38,7 +38,7 @@ $stable:                          #f8f8f8 !default;
       color: white !important;
       padding: 10px !important;
       border-radius: 10px !important;
-      text-align: left !important;
+      text-align: right !important;
       max-width: 240px !important;
     }
   }
@@ -72,7 +72,7 @@ $stable:                          #f8f8f8 !default;
     -webkit-transform: translate3d(0, 0, 0) !important;
     -moz-transform: translate3d(0, 0, 0) !important;
     transform: translate3d(0, 0, 0) !important;
-    text-align: right !important;
+    text-align: left !important;
 
     span {
       background: #007AFF !important;
