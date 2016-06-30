@@ -12,7 +12,7 @@ angular.module('main', [
 
 
   // Config for Devise
-  var railsUrl = 'http://localhost:3000'
+  var railsUrl = 'https://frozen-reaches-83397.herokuapp.com/'
   AuthProvider.loginPath(railsUrl + '/residents/sign_in.json');
   AuthProvider.resourceName('resident');
 

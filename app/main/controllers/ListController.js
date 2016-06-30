@@ -6,7 +6,7 @@
 		function ListController($scope, LocationFactory, $http, $interval){
 
 
-			// $http.get('http://localhost:3000/api/v1/residents/' + window.localStorage.id).then(function(response){
+			// $http.get('https://frozen-reaches-83397.herokuapp.com//api/v1/residents/' + window.localStorage.id).then(function(response){
 			// 	console.log(response)
 			// })
 
