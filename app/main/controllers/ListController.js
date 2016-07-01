@@ -29,9 +29,9 @@
 
 			//hell yeah ghetto function
 		  function upTime(soberDate) {
-		    now = new Date();
-		    countTo = new Date(soberDate);
-		    difference = (now - countTo);
+		    var now = new Date();
+		    var countTo = new Date(soberDate);
+		    var difference = (now - countTo);
 
 		    days = Math.floor(difference / (60 * 60 * 1000 * 24) * 1);
 		    hours = Math.floor((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
