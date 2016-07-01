@@ -4,7 +4,7 @@
 		.service('MessageService', MessageService)
 
 		function MessageService($firebaseArray) {
-			services = {};
+			var services = {};
 
 			services.chat = function(){
 				var ref = new Firebase('https://evolutiontech.firebaseio.com/residents/' + window.localStorage.id + '/chat')

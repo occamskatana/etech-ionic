@@ -3,7 +3,7 @@
 		.module('main')
 		.controller('ListController', ListController)
 
-		function ListController($scope, LocationFactory, $http, $interval){
+		function ListController($scope, LocationFactory, $http, $interval, Auth){
 
 
 			// $http.get('https://frozen-reaches-83397.herokuapp.com//api/v1/residents/' + window.localStorage.id).then(function(response){
@@ -13,18 +13,32 @@
 
 			function callatInterval(){
 				LocationFactory.getLocation()
-			}
+			};
 
-			$interval(callatInterval, 100000)
+			$interval(callatInterval, 10000);
+			$scope.loading = true;
+
+			$scope.name;
+			
+
+			var getUserInfo = function(){ 
+				Auth.currentUser().then(function(user){
+				$scope.name = user.first_name + ' ' + user.last_name
+				$scope.loading = false;
+				
+
+				});
+			};
 
 
-
-			$scope.name = window.localStorage.name
+			
 
 			$scope.$on('$ionicView.loaded', function(){
-				upTime(window.localStorage.soberDate)
+				
 				LocationFactory.getLocation()
-			})
+				getUserInfo();
+				upTime(window.localStorage.soberDate)
+			});
 			
 
 			//hell yeah ghetto function
@@ -33,10 +47,10 @@
 		    var countTo = new Date(soberDate);
 		    var difference = (now - countTo);
 
-		    days = Math.floor(difference / (60 * 60 * 1000 * 24) * 1);
-		    hours = Math.floor((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
-		    mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
-		    secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+		    var days = Math.floor(difference / (60 * 60 * 1000 * 24) * 1);
+		    var hours = Math.floor((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
+		    var mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+		    var secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
 
 		    document.getElementById('days').firstChild.nodeValue = days;
 		    document.getElementById('hours').firstChild.nodeValue = hours;

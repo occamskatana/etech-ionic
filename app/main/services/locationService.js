@@ -22,7 +22,7 @@
 					
 					reverseGeocode();
 
-					
+					console.log("ding")
 				})
 			}
 
