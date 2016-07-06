@@ -3,43 +3,52 @@
 		.module('main')
 		.controller('ListController', ListController)
 
-		function ListController($scope, LocationFactory, $http, $interval, Auth){
-
-
-			// $http.get('https://frozen-reaches-83397.herokuapp.com//api/v1/residents/' + window.localStorage.id).then(function(response){
-			// 	console.log(response)
-			// })
-
+		function ListController($scope, LocationFactory, $http, $interval, Auth, $ionicActionSheet){
 
 			function callatInterval(){
-				LocationFactory.getLocation()
+				LocationFactory.getLocation();
+				console.log("ding")
 			};
 
-			$interval(callatInterval, 10000);
+			$interval(callatInterval, 5000);
 			$scope.loading = true;
-
 			$scope.name;
+			$scope.events = ['Attend a Meeting', 'Urine Test Today', 'Therapy at 4 PM', 'Case Manager Meeting at 3PM']
 			
 
 			var getUserInfo = function(){ 
 				Auth.currentUser().then(function(user){
 				$scope.name = user.first_name + ' ' + user.last_name
 				$scope.loading = false;
-				
-
 				});
 			};
 
-
-			
-
 			$scope.$on('$ionicView.loaded', function(){
-				
-				LocationFactory.getLocation()
+				LocationFactory.getLocation();
 				getUserInfo();
-				upTime(window.localStorage.soberDate)
+				upTime(window.localStorage.soberDate);
 			});
-			
+
+			$scope.showSheet = function() {
+
+			   // Show the action sheet
+			   var hideSheet = $ionicActionSheet.show({
+			     buttons: [
+			       { text: 'Request Time Change' },
+			       { text: 'Request Cancel' },
+			       {text: 'Bitch at Case Manager'}
+			     ],
+			     titleText: 'Modify Event',
+			     cancelText: 'Cancel',
+			     cancel: function() {
+			          // add cancel code..
+			        },
+			     buttonClicked: function(index) {
+			       return true;
+			     }
+				   });
+				 };
+						
 
 			//hell yeah ghetto function
 		  function upTime(soberDate) {
@@ -59,6 +68,6 @@
 
 		    clearTimeout(upTime.to);
 		    upTime.to = setTimeout(function(){upTime(countTo); }, 1000);
-		  }
-		}
+		  };
+		};
 })();
