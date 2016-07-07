@@ -5,17 +5,11 @@ angular.module('main', [
   'ui.router',
   'ui.rCalendar',
   'firebase',
-  'Devise'
-  // TODO: load other modules selected during generation
+  'Devise',
+  'ngResource'
 ])
 .config(function ($stateProvider, $urlRouterProvider, $ionicConfigProvider, AuthProvider, $httpProvider) {
-
-
-  // Config for Devise
-  var railsUrl = 'https://frozen-reaches-83397.herokuapp.com/'
-  AuthProvider.loginPath(railsUrl + '/residents/sign_in.json');
-  AuthProvider.resourceName('resident');
-  AuthProvider.logoutPath(railsUrl + 'residents/sign_out.json')
+  
 
   //send credentials with every http request
   $httpProvider.defaults.withCredentials = true;

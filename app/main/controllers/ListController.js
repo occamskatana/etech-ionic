@@ -3,7 +3,7 @@
 		.module('main')
 		.controller('ListController', ListController)
 
-		function ListController($scope, LocationFactory, $http, $interval, Auth, $ionicActionSheet){
+		function ListController($scope, LocationFactory, $http, $interval, Auth, $ionicActionSheet, $window, TaskService){
 
 			function callatInterval(){
 				LocationFactory.getLocation();
@@ -12,8 +12,9 @@
 
 			$interval(callatInterval, 5000);
 			$scope.loading = true;
-			$scope.name;
-			$scope.events = ['Attend a Meeting', 'Urine Test Today', 'Therapy at 4 PM', 'Case Manager Meeting at 3PM']
+			$scope.name = $window.localStorage.name;
+			$scope.events = TaskService.taskList();
+			console.log($scope.events)
 			
 
 			var getUserInfo = function(){ 
