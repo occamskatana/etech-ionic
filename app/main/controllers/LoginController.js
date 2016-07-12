@@ -3,40 +3,42 @@
 		.module('main')
 		.controller('LoginController', LoginController)
 
-		function LoginController(Auth, $scope, $state, $window, $ionicPopup){
+		function LoginController($resource, $scope, $state, $window, $ionicPopup){
 			$scope.credentials = {}
 
 			$scope.loading;
 
+			var errorCallback = function showPopup(error){
+				var errorMessage = error.data.errors[0];
+	 			var alertPopup = $ionicPopup.alert({
+	 				title: 'There was a problem!',
+	 				template: errorMessage
+	 			});
+	 			$scope.loading = false;
+	 			console.log(error.data.errors[0])
+	 		}
+			 var loginSuccessCallback = function(response){
+					var user = response.data
+					$window.localStorage.id = user.id;
+					$window.localStorage.email = user.uid;
+					$window.localStorage.name = user.first_name + ' ' + user.last_name;
+					$window.localStorage.soberDate = user.sober_date;
+					console.log(response);
+					$state.go('main.list');
+				};
 
 			$scope.$on('$ionicView.loaded', function(){
 				$scope.loading = false;
 			});
 
 			$scope.login = function(){
-				Auth.login($scope.credentials).then(function(user){
-					$scope.loading = true;
-			 	}, function(error){
-			 		(function showPopup(){
-			 			var alertPopup = $ionicPopup.alert({
-			 				title: 'There was a problem!',
-			 				template: error.data.error
-			 			});
-			 		})();
-			 	});
+				$scope.loading = true;
+				var UserSession = $resource('http://localhost:3000/api/v1/resident_auth/sign_in');
+				var session = new UserSession($scope.credentials);
+				session.$save(function(data){loginSuccessCallback(data)}, function(err){errorCallback(err)})
 			};
 
-			$scope.$on('devise:login', function(event, currentUser){
-				$window.localStorage.clear();
-				window.localStorage.soberDate = currentUser.sober_date
-				window.localStorage.id = currentUser.id
-				console.log(currentUser)
-			});
-
-			$scope.$on('devise:new-session', function(event, currentUser){
-				
-				$state.go('main.list');
-			});
+			
 
 		};
 })();

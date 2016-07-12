@@ -1,6 +1,5 @@
 <ion-view view-title="Welcome">
-  <ion-spinner ng-show="loading"></ion-spinner>
-  <ion-content class="padding" ng-show="!loading">
+  <ion-content class="padding">
 
 
     <div class="list card">
@@ -32,8 +31,9 @@
 
   <ul class="list">
     <li class="item item-icon-right" ng-click="showSheet()" ng-repeat="event in events">
-      <i class="icon ion-ios-checkmark-outline"></i>
-      {{event}}
+      <i class="icon ion-checkmark-circled positive" ng-show="event.complete == true"></i>
+      <i class="icon ion-close-circled assertive" ng-show="event.complete == false"></i>
+      {{event.name}}
     </li>
   </ul>
 
