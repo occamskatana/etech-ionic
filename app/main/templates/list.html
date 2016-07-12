@@ -1,5 +1,6 @@
 <ion-view view-title="Welcome">
-  <ion-content class="padding">
+  <ion-spinner ng-show="loading"></ion-spinner>
+  <ion-content class="padding" ng-show="!loading">
 
 
     <div class="list card">
@@ -29,27 +30,12 @@
       </div>
     </div>
 
-  <div class="list">
-     <a href="#" class="item item-icon-right">
-    <i class="icon ion-ios-checkmark-outline"></i>
-    Attend a Meeting
-  </a>
-
-  <a href="#" class="item item-icon-right">
-    <i class="icon ion-ios-checkmark-outline"></i>
-    Urine Test At CFC Today
-  </a>
-
-  <a href="#" class="item item-icon-right">
-    <i class="icon ion-ios-checkmark-outline"></i>
-    Therapy at 4 PM
-  </a>
-
-  <a href="#" class="item item-icon-right">
-    <i class="icon ion-ios-checkmark-outline"></i>
-    Case Manager Meeting at 3 PM
-  </a>
-  </div>
+  <ul class="list">
+    <li class="item item-icon-right" ng-click="showSheet()" ng-repeat="event in events">
+      <i class="icon ion-ios-checkmark-outline"></i>
+      {{event}}
+    </li>
+  </ul>
 
   </ion-content>
 </ion-view>

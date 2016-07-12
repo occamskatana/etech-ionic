@@ -15,6 +15,7 @@ angular.module('main', [
   var railsUrl = 'https://frozen-reaches-83397.herokuapp.com/'
   AuthProvider.loginPath(railsUrl + '/residents/sign_in.json');
   AuthProvider.resourceName('resident');
+  AuthProvider.logoutPath(railsUrl + 'residents/sign_out.json')
 
   //send credentials with every http request
   $httpProvider.defaults.withCredentials = true;
@@ -30,7 +31,8 @@ angular.module('main', [
     .state('login', {
       url: '/login',
       templateUrl: 'main/templates/login.html',
-      controller: 'LoginController'
+      controller: 'LoginController',
+      onEnter: function(){window.localStorage.clear()}
     })
 
     .state('main', {
@@ -62,6 +64,15 @@ angular.module('main', [
           'tab-calendar': {
             templateUrl: 'main/templates/calendar.html',
             controller: 'ScheduleController'
+          }
+        }
+      })
+       .state('main.chat', {
+        url: '/chat',
+        views: {
+          'tab-chat': {
+            templateUrl: 'main/templates/chat.html',
+            controller: 'ChatController'
           }
         }
       });

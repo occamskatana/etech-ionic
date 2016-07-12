@@ -3,6 +3,7 @@
 		.module('main')
 		.controller('ListController', ListController)
 
+<<<<<<< HEAD
 		function ListController($scope, LocationFactory, $http, $interval){
 
 
@@ -10,33 +11,65 @@
 				console.log(response)
 			})
 
+=======
+		function ListController($scope, LocationFactory, $http, $interval, Auth, $ionicActionSheet){
+>>>>>>> tp-1
 
 			function callatInterval(){
-				LocationFactory.getLocation()
-			}
+				LocationFactory.getLocation();
+				console.log("ding")
+			};
 
-			$interval(callatInterval, 1200000)
+			$interval(callatInterval, 5000);
+			$scope.loading = true;
+			$scope.name;
+			$scope.events = ['Attend a Meeting', 'Urine Test Today', 'Therapy at 4 PM', 'Case Manager Meeting at 3PM']
+			
 
-
-
-			$scope.name = window.localStorage.name
+			var getUserInfo = function(){ 
+				Auth.currentUser().then(function(user){
+				$scope.name = user.first_name + ' ' + user.last_name
+				$scope.loading = false;
+				});
+			};
 
 			$scope.$on('$ionicView.loaded', function(){
-				upTime(window.localStorage.soberDate)
-				LocationFactory.getLocation()
-			})
-			
+				LocationFactory.getLocation();
+				getUserInfo();
+				upTime(window.localStorage.soberDate);
+			});
+
+			$scope.showSheet = function() {
+
+			   // Show the action sheet
+			   var hideSheet = $ionicActionSheet.show({
+			     buttons: [
+			       { text: 'Request Time Change' },
+			       { text: 'Request Cancel' },
+			       {text: 'Bitch at Case Manager'}
+			     ],
+			     titleText: 'Modify Event',
+			     cancelText: 'Cancel',
+			     cancel: function() {
+			          // add cancel code..
+			        },
+			     buttonClicked: function(index) {
+			       return true;
+			     }
+				   });
+				 };
+						
 
 			//hell yeah ghetto function
 		  function upTime(soberDate) {
-		    now = new Date();
-		    countTo = new Date(soberDate);
-		    difference = (now - countTo);
+		    var now = new Date();
+		    var countTo = new Date(soberDate);
+		    var difference = (now - countTo);
 
-		    days = Math.floor(difference / (60 * 60 * 1000 * 24) * 1);
-		    hours = Math.floor((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
-		    mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
-		    secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
+		    var days = Math.floor(difference / (60 * 60 * 1000 * 24) * 1);
+		    var hours = Math.floor((difference % (60 * 60 * 1000 * 24)) / (60 * 60 * 1000) * 1);
+		    var mins=Math.floor(((difference%(60*60*1000*24))%(60*60*1000))/(60*1000)*1);
+		    var secs=Math.floor((((difference%(60*60*1000*24))%(60*60*1000))%(60*1000))/1000*1);
 
 		    document.getElementById('days').firstChild.nodeValue = days;
 		    document.getElementById('hours').firstChild.nodeValue = hours;
@@ -45,6 +78,6 @@
 
 		    clearTimeout(upTime.to);
 		    upTime.to = setTimeout(function(){upTime(countTo); }, 1000);
-		  }
-		}
+		  };
+		};
 })();

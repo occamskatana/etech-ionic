@@ -3,28 +3,40 @@
 		.module('main')
 		.controller('LoginController', LoginController)
 
-		function LoginController(Auth, $scope, $state){
+		function LoginController(Auth, $scope, $state, $window, $ionicPopup){
 			$scope.credentials = {}
+
+			$scope.loading;
+
+
+			$scope.$on('$ionicView.loaded', function(){
+				$scope.loading = false;
+			});
 
 			$scope.login = function(){
 				Auth.login($scope.credentials).then(function(user){
-					console.log(user)
+					$scope.loading = true;
 			 	}, function(error){
-			 		alert(error.data.error);
+			 		(function showPopup(){
+			 			var alertPopup = $ionicPopup.alert({
+			 				title: 'There was a problem!',
+			 				template: error.data.error
+			 			});
+			 		})();
 			 	});
-			}
+			};
 
 			$scope.$on('devise:login', function(event, currentUser){
-				$state.go('main.list')
-
-			})
+				$window.localStorage.clear();
+				window.localStorage.soberDate = currentUser.sober_date
+				window.localStorage.id = currentUser.id
+				console.log(currentUser)
+			});
 
 			$scope.$on('devise:new-session', function(event, currentUser){
-				window.localStorage.clear();
-				window.localStorage.id = currentUser.id;
-				window.localStorage.soberDate = currentUser.sober_date
-				window.localStorage.name = currentUser.first_name + ' ' + currentUser.last_name
-			})
+				
+				$state.go('main.list');
+			});
 
-		}
-})()
+		};
+})();
