@@ -5,12 +5,13 @@
                  on-swipe-right="hideTime = true">
 
       <div ng-repeat="message in messages"
-           ng-class="{other: message.userId == myId}"
+           ng-class="{other: message.userId != myId}"
            class="messages">
 
         <div class="message">
             <strong ng-show="message.userId != myId">{{message.userId}}</strong>
-            <strong ng-show="message.userId == myId">Me</strong><br>          
+            <strong ng-show="message.userId == myId">{{message.name}}</strong>
+            <br>          
           <span>{{ message.text }}</span>
         </div>
 

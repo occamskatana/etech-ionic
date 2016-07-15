@@ -19,7 +19,8 @@
 		  	d = d.toLocaleTimeString().replace(/:\d+ /, ' ');
 
 		    $scope.messages.$add({
-		      userId: window.localStorage.id,
+		      userId: $scope.myId,
+		      name: window.localStorage.name,
 		      text: $scope.data.message,
 		      time: d
 		    });
