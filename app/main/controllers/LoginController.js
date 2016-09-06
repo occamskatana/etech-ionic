@@ -33,7 +33,7 @@
 
 			$scope.login = function(){
 				$scope.loading = true;
-				var UserSession = $resource('http://localhost:3000/api/v1/resident_auth/sign_in');
+				var UserSession = $resource('https://frozen-reaches-83397.herokuapp.com//api/v1/resident_auth/sign_in');
 				var session = new UserSession($scope.credentials);
 				session.$save(function(data){loginSuccessCallback(data)}, function(err){errorCallback(err)})
 			};

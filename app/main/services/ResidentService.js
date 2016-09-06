@@ -9,7 +9,12 @@
 			services.locationFirebase = function(){
 				var ref = new Firebase('https://evolutiontech.firebaseio.com/residents/' + window.localStorage.id + '/locations')
 				return $firebaseArray(ref)
-				console.log(ref)
+				
+			}
+
+			services.currentLocationFirebase = function(){
+				var ref = new Firebase('https://evolutiontech.firebaseio.com/residents/' + window.localStorage.id + '/current_location')
+				return ref
 			}
 
 			
